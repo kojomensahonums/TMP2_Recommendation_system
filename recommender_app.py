@@ -7,15 +7,10 @@ from scipy.sparse import csr_matrix
 # ----------------------
 # Load data
 # ----------------------
-BASE_DIR = os.path.dirname(os.path.abspath(__file__))
-
-# Load files relative to the script’s location
-csv_path = os.path.join(BASE_DIR, "demo_data.csv")
-df = pd.read_csv(csv_path)
+df = pd.read_csv('/mount/src/tmp2_recommendation_system/demo_data.csv')
 
 # For images
-data["image_path"] = data["image_path"].apply(
-    lambda x: os.path.join(BASE_DIR, "images", x))
+df["image_path"] = df["image_path"].apply(lambda x: os.path.join('/mount/src/tmp2_recommendation_system/', "images", x))
 
 # ----------------------
 # Build sparse matrix
@@ -84,5 +79,6 @@ if selected_user:
         img_path = df[df["itemid"] == iid]["image_path"].values[0]
 
         col.image(img_path, caption=f"Item {iid}", use_column_width=True)
+
 
 
