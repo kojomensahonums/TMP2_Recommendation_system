@@ -80,7 +80,8 @@ if selected_user:
         # fetch image path from df
         img_path = df[df["itemid"] == iid]["image_path"].values[0]
 
-        col.image(img_path, caption=f"Item {iid}", use_column_width=True)
+        col.image(img_path, caption=f"Item {iid}", use_container_width=True)
+
 
 
 
