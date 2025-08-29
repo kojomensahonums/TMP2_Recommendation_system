@@ -1,16 +1,18 @@
 import streamlit as st
 import pandas as pd
 import numpy as np
+from pathlib import Path
 import os
 from scipy.sparse import csr_matrix
 
 # ----------------------
 # Load data
 # ----------------------
-df = pd.read_csv('/mount/src/tmp2_recommendation_system/demo_data.csv')
+# Always relative to where this file lives
+BASE_DIR = Path(__file__).parent
+csv_path = BASE_DIR / "demo_data.csv"
 
-# For images
-df["image_path"] = df["image_path"].apply(lambda x: os.path.join('/mount/src/tmp2_recommendation_system/', "images", x))
+df = pd.read_csv(csv_path)
 
 # ----------------------
 # Build sparse matrix
@@ -79,6 +81,7 @@ if selected_user:
         img_path = df[df["itemid"] == iid]["image_path"].values[0]
 
         col.image(img_path, caption=f"Item {iid}", use_column_width=True)
+
 
 
 
