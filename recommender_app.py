@@ -1,6 +1,7 @@
 import streamlit as st
 import pandas as pd
 import numpy as np
+import os
 from scipy.sparse import csr_matrix
 
 # ----------------------
@@ -83,4 +84,5 @@ if selected_user:
         img_path = df[df["itemid"] == iid]["image_path"].values[0]
 
         col.image(img_path, caption=f"Item {iid}", use_column_width=True)
+
 
