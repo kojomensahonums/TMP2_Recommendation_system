@@ -1,65 +1,80 @@
-# TMP2_Recommendation_system
+# 🎬 Recommendation System Experiments
 
-Recommendation System Experiments
-📌 Overview
+This project explores **recommendation system approaches** on an **implicit feedback dataset** of user–item interactions.  
+The aim was to identify **practical, fast-to-compute models** that can generate recommendations at scale, given available infrastructure and deployment constraints.  
 
-This project explores recommendation system approaches on an implicit feedback dataset of user–item interactions. The aim was to identify practical, fast-to-compute models that can generate recommendations at scale given available infrastructure.
+---
 
-📂 Dataset
+## 📂 Dataset
 
-Millions of rows of user interactions (visitorid, itemid, event).
+- **Scale**: Millions of rows of user interactions (`visitorid`, `itemid`, `event`)  
+- **Event types**: Views, adds, carts, and transactions  
+- **Imbalance**: Most events are *views*, while transactions (the most valuable) are rare  
 
-Event types include views, adds, carts, and transactions.
+---
 
-High class imbalance: most interactions are views, while transactions (more valuable) are rare.
+## ⚙️ Methods Tried
 
-⚙️ Methods Tried
-1. Sparse Collaborative Filtering (Baseline)
+### 🔹 1. Sparse Collaborative Filtering (Baseline)
+- Built a **user–item interaction matrix** in sparse format  
+- Recommendations computed via **dot-product similarity** between users and items  
+- **Advantage**: Fast, lightweight, interpretable  
 
-Used user–item interaction matrix in sparse format.
+---
 
-Generated recommendations via dot-product similarity between users and items.
+### 🔹 2. Clustering
+- Applied **K-Means** on user vectors derived from the interaction matrix  
+- Grouped users into **behavioral segments**  
+- Items popular within each cluster served as **segment-based recommendations**  
+- **Advantage**: Useful for **cold-start users** and marketing segmentation  
 
-Advantage: Fast, lightweight, and interpretable.
+---
 
-2. Clustering
+### 🔹 3. KNN (Neighborhood Models)
+- Implemented **User–User** and **Item–Item KNN** on sparse vectors  
+- Found nearest neighbors using **cosine similarity**  
+- Delivered intuitive recommendations:  
+  - “Users like you also interacted with these items”  
+  - “Items similar to what you viewed”  
+- **Advantage**: Most intuitive recommendations, but slower at scale  
 
-Applied K-Means clustering on user vectors (from interaction matrix).
+---
 
-Grouped users into segments based on similar behavior.
+### 🔹 4. Randomised Recommendation (Deployment Extension)
+During **deployment**, several challenges arose:  
+- The **scale of the dataset** made some models impractical under current compute limits  
+- Certain methods (e.g., KNN) became **too slow** for interactive use in Streamlit  
+- To ensure recommendations felt **fresh and responsive**, a **randomisation component** was added to the baseline CF output  
 
-Items popular within each cluster served as segment-based recommendations.
+This approach:  
+- Preserves **relevance** while introducing **diversity**  
+- Prevents recommendations from being identical on every run  
+- Offers a more engaging user experience despite infrastructure constraints  
 
-Advantage: useful for cold-start and user grouping.
+---
 
-3. KNN (Neighborhood Models)
+## ✅ Results & Insights
 
-Implemented User-User and Item-Item KNN on sparse vectors.
+- **Sparse CF**: Most scalable under current compute limits  
+- **Clustering**: Strong for segmentation and group targeting  
+- **KNN**: Best interpretability but slow for large-scale deployment  
+- **Randomised extension**: Practical fix for deployment, balancing **speed + diversity**  
+- Event imbalance suggests **weighting transactions higher** could improve relevance  
 
-Found nearest neighbors using cosine similarity.
+---
 
-Provided intuitive recommendations:
+## 🚧 Challenges
 
-“Users like you also interacted with these items.”
+- **Large dataset size**: Limited advanced models without bigger compute resources  
+- **Evaluation**: Measuring recommendation quality required sampling/offline proxy metrics  
+- **Skewed distributions**: A small set of users/items drove most of the interactions  
+- **Deployment constraints**: Led to inclusion of a **randomisation step** to improve UX  
 
-“Items similar to what you viewed.”
+---
 
-✅ Results & Insights
+# 🎬 Recommendation System Experiments
 
-All three approaches (sparse CF, clustering, KNN) produced usable results.
+📢 **Live Demo**: [Try the App on Streamlit Cloud 🚀](https://ecommerce-recommendation-system-001.streamlit.app/)
 
-KNN gave the most intuitive recommendations but was slower at scale.
-
-Clustering is well-suited for marketing segmentation and group targeting.
-
-Sparse CF is the simplest and most scalable under current compute limits.
-
-Event imbalance suggests that weighting transactions higher would improve relevance.
-
-🚧 Challenges
-
-Dataset size makes some advanced models impractical without larger compute resources.
-
-Evaluation of recommendation quality requires sampling or offline proxy metrics due to scale.
-
-Users/items are highly imbalanced: a small percentage drive most interactions.
+This project explores **recommendation system approaches** on an **implicit feedback dataset** of user–item interactions.  
+The aim was to identify **practical, fast-to-compute models** that can generate recommendations at scale, given available infrastructure and deployment constraints.  
