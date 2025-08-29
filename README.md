@@ -1,4 +1,4 @@
-# 🎬 Recommendation System Experiments
+# :mag_right: Recommendation System Experiments
 
 This project explores **recommendation system approaches** on an **implicit feedback dataset** of user–item interactions.  
 The aim was to identify **practical, fast-to-compute models** that can generate recommendations at scale, given available infrastructure and deployment constraints.  
@@ -8,7 +8,7 @@ The aim was to identify **practical, fast-to-compute models** that can generate 
 ## 📂 Dataset
 
 - **Scale**: Millions of rows of user interactions (`visitorid`, `itemid`, `event`)  
-- **Event types**: Views, adds, carts, and transactions  
+- **Event types**: Views, add-to-carts, and transactions  
 - **Imbalance**: Most events are *views*, while transactions (the most valuable) are rare  
 
 ---
@@ -42,8 +42,8 @@ The aim was to identify **practical, fast-to-compute models** that can generate 
 
 ### 🔹 4. Randomised Recommendation (Deployment Extension)
 During **deployment**, several challenges arose:  
-- The **scale of the dataset** made some models impractical under current compute limits  
-- Certain methods (e.g., KNN) became **too slow** for interactive use in Streamlit  
+- The **scale of the dataset** made some models (eg. LightFM) impractical under current compute limits  
+- Certain methods (eg., KNN) became **too repetitive** in recommendations, recommending the same items for different users.
 - To ensure recommendations felt **fresh and responsive**, a **randomisation component** was added to the baseline CF output  
 
 This approach:  
