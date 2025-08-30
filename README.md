@@ -72,9 +72,19 @@ This approach:
 
 ---
 
-# 🎬 Recommendation System Experiments
+# :mag_right: Recommendation System Experiments
 
 📢 **Live Demo**: [Try the App on Streamlit Cloud 🚀](https://ecommerce-recommendation-system-001.streamlit.app/)
+
+### Run Locally:
+1. Clone the repo  
+   ```bash
+   git clone https://github.com/kojomensahonums/tmp2_recommendation_system.git
+   cd tmp2_recommendation_system
+2. pip install -r requirements.txt
+3. streamlit run recommender_app.py
+4. Open in browser: 👉 http://localhost:8501
+---
 
 This project explores **recommendation system approaches** on an **implicit feedback dataset** of user–item interactions.  
 The aim was to identify **practical, fast-to-compute models** that can generate recommendations at scale, given available infrastructure and deployment constraints.  
